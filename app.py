@@ -3,6 +3,7 @@ from pathlib import Path
 from io import BytesIO
 import base64
 import requests
+import os
 
 import dash
 from dash.dependencies import Input, Output, State
@@ -24,6 +25,8 @@ def download_file(url, dest):
     with open(dest, 'wb') as f: f.write(r.content)
 
 def setup_learner():
+    if not os.path.exists('models'):
+        os.mkdir('models')
     download_file(model_file_url, path/'models'/model_file_name)
     learn = load_learner(path/'models', model_file_name)
     return learn
