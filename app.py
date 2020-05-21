@@ -39,7 +39,6 @@ def make_prediction(img_bytes):
 
 learn = setup_learner()
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.SPACELAB])
-
 server = app.server
 
 # App layout
@@ -101,4 +100,4 @@ def update_output(content, filename):
 
 
 if __name__ == '__main__':
-    app.run_server(debug=False)
+    app.run_server(host='0.0.0.0', port=8080, debug=False)
